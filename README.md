@@ -17,6 +17,8 @@ with the most popular web frameworks
 require 'deklarativna'
 require 'deklarativna_utils'
 
+include Deklarativna
+
 renderable = html {
     [
       head {
