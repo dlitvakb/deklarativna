@@ -38,42 +38,9 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<strong></strong>", strong
     assert_equal "<pre></pre>", pre
 
-    assert_equal "<br>", br
+    assert_equal "<br />", br
     assert_equal "<!---->", comment
     assert_equal "<img src=\"\" alt=\"\" />", img
-  end
-
-  def test_nesting_renderable
-    renderable = NestingRenderable.new { |instance|
-                   instance.tag_name = "html"
-                 }
-    assert_equal "<html></html>", renderable.to_s
-    renderable = NestingRenderable.new { |instance|
-                   instance.tag_name = "html"
-                   instance.content = Proc.new { body }
-                 }
-    assert_equal "<html><body></body></html>", renderable.to_s
-  end
-
-  def test_text_renderable
-    renderable = TextRenderable.new { |instance|
-                   instance.tag_name = "script"
-                 }
-    assert_equal "<script></script>", renderable.to_s
-    renderable = TextRenderable.new { |instance|
-                   instance.tag_name = "script"
-                   instance.content = Proc.new {"var y = 2; alert(y);"}
-                 }
-    assert_equal "<script>var y = 2; alert(y);</script>", renderable.to_s
-  end
-
-  def test_comment_renderable
-    renderable = CommentRenderable.new { |instance|
-                   instance.content = Proc.new {
-                     "some whacky comment"
-                   }
-                 }
-    assert_equal "<!--some whacky comment-->", renderable.to_s
   end
 
   def test_render_any_number_of_nestings
