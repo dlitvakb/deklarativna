@@ -61,4 +61,18 @@ module Deklarativna
     end
   end
 
+  def renderable_string renderable_class, tag_name, block
+    (renderable_class.new { |instance|
+      instance.tag_name = tag_name
+      instance.content = block
+    }).to_s
+  end
+
+  def nesting_renderable_string tag_name, block
+    renderable_string NestingRenderable, tag_name, block
+  end
+
+  def text_renderable_string tag_name, block
+    renderable_string TextRenderable, tag_name, block
+  end
 end
