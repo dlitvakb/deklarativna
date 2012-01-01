@@ -135,7 +135,7 @@ module Deklarativna
   end
 
   def comment &comment_block
-    renderable_string CommentRenderable, "", comment_block
+    renderable_string CommentRenderable, comment_block
   end
 
   def img src="", alt=""
