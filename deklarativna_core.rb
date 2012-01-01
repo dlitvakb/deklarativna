@@ -1,13 +1,20 @@
 module Deklarativna
 
   class Renderable
-    attr_accessor :tag_name
+    attr_accessor :tag_name, :extra_tags
 
     def initialize &initialization_block
       initialization_block.call self
     end
 
-    def extra_tags
+    def render_extra_tags
+      rendering_tags = []
+      if @extra_tags.respond_to? :each_pair
+        @extra_tags.each_pair do |k, v|
+          rendering_tags.push "#{k}=\"#{v}\""
+        end
+      end
+      return " " + (rendering_tags.join " ") if !rendering_tags.empty?
     end
   end
 
@@ -15,7 +22,7 @@ module Deklarativna
     attr_accessor :content
 
     def to_s
-      "<#{@tag_name}#{extra_tags}>#{proc_call}</#{@tag_name}>"
+      "<#{@tag_name}#{render_extra_tags}>#{proc_call}</#{@tag_name}>"
     end
 
     def proc_call
@@ -57,22 +64,33 @@ module Deklarativna
 
   class SingleTagRenderable < Renderable
     def to_s
-      "<#{@tag_name} />"
+      "<#{@tag_name}#{render_extra_tags} />"
     end
   end
 
-  def renderable_string renderable_class, block, tag_name=""
+  def renderable_string renderable_class, block, extra_tags={}, tag_name=""
     (renderable_class.new { |instance|
       instance.tag_name = tag_name
-      instance.content = block
+      instance.extra_tags = extra_tags
+      if instance.respond_to? :content
+        instance.content = block
+      end
     }).to_s
   end
 
-  def nesting_renderable_string tag_name, block
-    renderable_string NestingRenderable, block, tag_name
+  def single_tag_renderable_string tag_name, extra_tags={}
+    renderable_string SingleTagRenderable, nil, extra_tags, tag_name
   end
 
-  def text_renderable_string tag_name, block
-    renderable_string TextRenderable, block, tag_name
+  def nesting_renderable_string tag_name, block, extra_tags={}
+    renderable_string NestingRenderable, block, extra_tags, tag_name
+  end
+
+  def text_renderable_string tag_name, block, extra_tags={}
+    renderable_string TextRenderable, block, extra_tags, tag_name
+  end
+
+  def comment_renderable_string comment_block
+    renderable_string CommentRenderable, comment_block
   end
 end

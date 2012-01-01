@@ -8,8 +8,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<html></html>", html
     assert_equal "<head></head>", head
     assert_equal "<title></title>", title
-    assert_equal "<script></script>", script
-    assert_equal "<style></style>", style
+    assert_equal "<script type=\"\"></script>", script
+    assert_equal "<style type=\"\"></style>", style
     assert_equal "<body></body>", body
     assert_equal "<h1></h1>", h1
     assert_equal "<h2></h2>", h2
@@ -26,8 +26,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<ul></ul>", ul
     assert_equal "<ol></ol>", ol
     assert_equal "<li></li>", li
-    assert_equal "<a></a>", a
-    assert_equal "<form></form>", form
+    assert_equal "<a href=\"\"></a>", a
+    assert_equal "<form method=\"\" action=\"\"></form>", form
     assert_equal "<center></center>", center
     assert_equal "<dd></dd>", dd
     assert_equal "<dl></dl>", dl
@@ -70,21 +70,21 @@ class DeklarativnaTest < Test::Unit::TestCase
                      p { "chau" }
                    ]}
                  ]}
-    assert_equal "<html><head><script></script></head><body><p>hola</p><p>chau</p></body></html>", renderable
+    assert_equal "<html><head><script type=\"\"></script></head><body><p>hola</p><p>chau</p></body></html>", renderable
   end
 
   def test_style_can_render_css
     renderable = style {
       "h1, p {text-align: left;}"
     }
-    assert_equal "<style>h1, p {text-align: left;}</style>", renderable
+    assert_equal "<style type=\"\">h1, p {text-align: left;}</style>", renderable
   end
 
   def test_script_can_render_script
     renderable = script {
       "var y = 2; alert(y);"
     }
-    assert_equal "<script>var y = 2; alert(y);</script>", renderable
+    assert_equal "<script type=\"\">var y = 2; alert(y);</script>", renderable
   end
 
   def test_comment_block

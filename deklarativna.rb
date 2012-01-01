@@ -2,143 +2,150 @@ require 'deklarativna_core'
 
 module Deklarativna
 
-  def html &html_block
-    nesting_renderable_string "html", html_block
+  def html extra_tags={}, &html_block
+    nesting_renderable_string "html", html_block, extra_tags
   end
 
-  def head &html_block
-    nesting_renderable_string "head", html_block
+  def head extra_tags={}, &html_block
+    nesting_renderable_string "head", html_block, extra_tags
   end
 
   def title &page_title_block
     text_renderable_string "title", page_title_block
   end
 
-  def script type="", &script_text_block
-    text_renderable_string "script", script_text_block
+  def script type="", extra_tags={}, &script_text_block
+    extra_tags["type"] = type
+    text_renderable_string "script", script_text_block, extra_tags
   end
 
-  def style type="", &style_text_block
-    text_renderable_string "style", style_text_block
+  def style type="", extra_tags={}, &style_text_block
+    extra_tags["type"] = type
+    text_renderable_string "style", style_text_block, extra_tags
   end
 
-  def body &html_block
-    nesting_renderable_string "body", html_block
+  def body extra_tags={}, &html_block
+    nesting_renderable_string "body", html_block, extra_tags
   end
 
-  def h1 &html_block
-    text_renderable_string "h1", html_block
+  def h1 extra_tags={}, &html_block
+    text_renderable_string "h1", html_block, extra_tags
   end
 
-  def h2 &html_block
-    text_renderable_string "h2", html_block
+  def h2 extra_tags={}, &html_block
+    text_renderable_string "h2", html_block, extra_tags
   end
 
-  def h3 &html_block
-    text_renderable_string "h3", html_block
+  def h3 extra_tags={}, &html_block
+    text_renderable_string "h3", html_block, extra_tags
   end
 
-  def h4 &html_block
-    text_renderable_string "h4", html_block
+  def h4 extra_tags={}, &html_block
+    text_renderable_string "h4", html_block, extra_tags
   end
 
-  def h5 &html_block
-    text_renderable_string "h5", html_block
+  def h5 extra_tags={}, &html_block
+    text_renderable_string "h5", html_block, extra_tags
   end
 
-  def h6 &html_block
-    text_renderable_string "h6", html_block
+  def h6 extra_tags={}, &html_block
+    text_renderable_string "h6", html_block, extra_tags
   end
 
-  def p &html_block
-    nesting_renderable_string "p", html_block
+  def p extra_tags={}, &html_block
+    nesting_renderable_string "p", html_block, extra_tags
   end
 
-  def div &html_block
-    nesting_renderable_string "div", html_block
+  def div extra_tags={}, &html_block
+    nesting_renderable_string "div", html_block, extra_tags
   end
 
-  def span &html_block
-    nesting_renderable_string "span", html_block
+  def span extra_tags={}, &html_block
+    nesting_renderable_string "span", html_block, extra_tags
   end
 
-  def table &html_block
-    nesting_renderable_string "table", html_block
+  def table extra_tags={}, &html_block
+    nesting_renderable_string "table", html_block, extra_tags
   end
 
-  def tr &html_block
-    nesting_renderable_string "tr", html_block
+  def tr extra_tags={}, &html_block
+    nesting_renderable_string "tr", html_block, extra_tags
   end
 
-  def td &html_block
-    nesting_renderable_string "td", html_block
+  def td extra_tags={}, &html_block
+    nesting_renderable_string "td", html_block, extra_tags
   end
 
-  def ul &html_block
-    nesting_renderable_string "ul", html_block
+  def ul extra_tags={}, &html_block
+    nesting_renderable_string "ul", html_block, extra_tags
   end
 
-  def ol &html_block
-    nesting_renderable_string "ol", html_block
+  def ol extra_tags={}, &html_block
+    nesting_renderable_string "ol", html_block, extra_tags
   end
 
-  def li &html_block
-    nesting_renderable_string "li", html_block
+  def li extra_tags={}, &html_block
+    nesting_renderable_string "li", html_block, extra_tags
   end
 
-  def a href="", &html_block
-    nesting_renderable_string "a", html_block
+  def a href="", extra_tags={}, &html_block
+    extra_tags["href"] = href
+    nesting_renderable_string "a", html_block, extra_tags
   end
 
-  def form action="", method="", &html_block
-    nesting_renderable_string "form", html_block
+  def form action="", method="", extra_tags={}, &html_block
+    extra_tags["action"] = action
+    extra_tags["method"] = method
+    nesting_renderable_string "form", html_block, extra_tags
   end
 
-  def center &html_block
-    nesting_renderable_string "center", html_block
+  def center extra_tags={}, &html_block
+    nesting_renderable_string "center", html_block, extra_tags
   end
 
-  def dd &html_block
-    nesting_renderable_string "dd", html_block
+  def dd extra_tags={}, &html_block
+    nesting_renderable_string "dd", html_block, extra_tags
   end
 
-  def dl &html_block
-    nesting_renderable_string "dl", html_block
+  def dl extra_tags={}, &html_block
+    nesting_renderable_string "dl", html_block, extra_tags
   end
 
-  def dt &html_block
-    nesting_renderable_string "dt", html_block
+  def dt extra_tags={}, &html_block
+    nesting_renderable_string "dt", html_block, extra_tags
   end
 
-  def i &html_block
-    nesting_renderable_string "i", html_block
+  def i extra_tags={}, &html_block
+    nesting_renderable_string "i", html_block, extra_tags
   end
 
-  def b &html_block
-    nesting_renderable_string "b", html_block
+  def b extra_tags={}, &html_block
+    nesting_renderable_string "b", html_block, extra_tags
   end
 
-  def em &html_block
-    nesting_renderable_string "em", html_block
+  def em extra_tags={}, &html_block
+    nesting_renderable_string "em", html_block, extra_tags
   end
 
-  def strong &html_block
-    nesting_renderable_string "strong", html_block
+  def strong extra_tags={}, &html_block
+    nesting_renderable_string "strong", html_block, extra_tags
   end
 
-  def pre &preformatted_text_block
-    text_renderable_string "pre", preformatted_text_block
+  def pre extra_tags={}, &preformatted_text_block
+    text_renderable_string "pre", preformatted_text_block, extra_tags
   end
 
-  def br
-    "<br />"
+  def br extra_tags={}
+    single_tag_renderable_string "br", extra_tags
   end
 
   def comment &comment_block
-    renderable_string CommentRenderable, comment_block
+    comment_renderable_string comment_block
   end
 
-  def img src="", alt=""
-    "<img src=\"#{src}\" alt=\"#{alt}\" />"
+  def img src="", alt="", extra_tags={}
+    extra_tags["src"] = src
+    extra_tags["alt"] = alt
+    single_tag_renderable_string "img", extra_tags
   end
 end
