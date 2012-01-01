@@ -48,6 +48,9 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<br />", br
     assert_equal "<!---->", comment
     assert_equal "<img src=\"\" alt=\"\" />", img
+
+    assert_equal "<mysingletag />", (xml_single_tag "mysingletag")
+    assert_equal "<mydoubletag></mydoubletag>", (xml_double_tag "mydoubletag")
   end
 
   def test_render_any_number_of_nestings

@@ -182,4 +182,12 @@ module Deklarativna
     extra_tags["alt"] = alt
     single_tag_renderable_string "img", extra_tags
   end
+
+  def xml_single_tag tag_name, extra_tags={}
+    single_tag_renderable_string tag_name.downcase, extra_tags
+  end
+
+  def xml_double_tag tag_name, extra_tags={}, &html_block
+    nesting_renderable_string tag_name.downcase, html_block, extra_tags
+  end
 end
