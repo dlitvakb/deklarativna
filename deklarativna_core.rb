@@ -93,4 +93,10 @@ module Deklarativna
   def comment_renderable_string comment_block
     renderable_string CommentRenderable, comment_block
   end
+
+  def form_input_renderable_string name, type, extra_tags
+    extra_tags["name"] = name
+    extra_tags["type"] = type
+    single_tag_renderable_string "input", extra_tags
+  end
 end

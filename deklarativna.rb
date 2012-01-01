@@ -14,6 +14,16 @@ module Deklarativna
     text_renderable_string "title", page_title_block
   end
 
+  def link rel="", href="", extra_tags={}
+    extra_tags["href"] = href
+    extra_tags["rel"] = rel
+    single_tag_renderable_string "link", extra_tags
+  end
+
+  def meta tags={}
+    single_tag_renderable_string "meta", tags
+  end
+
   def script type="", extra_tags={}, &script_text_block
     extra_tags["type"] = type
     text_renderable_string "script", script_text_block, extra_tags
@@ -97,6 +107,30 @@ module Deklarativna
     extra_tags["action"] = action
     extra_tags["method"] = method
     nesting_renderable_string "form", html_block, extra_tags
+  end
+
+  def text_input name="", extra_tags={}
+    form_input_renderable_string name, "text", extra_tags
+  end
+
+  def password_input name="", extra_tags={}
+    form_input_renderable_string name, "password", extra_tags
+  end
+
+  def radio_input name="", value="", extra_tags={}
+    extra_tags["value"] = value
+    form_input_renderable_string name, "radio", extra_tags
+  end
+
+  def checkbox_input name="", value="", extra_tags={}
+    extra_tags["value"] = value
+    form_input_renderable_string name, "checkbox", extra_tags
+  end
+
+  def submit value="Submit", extra_tags={}
+    extra_tags["type"] = "submit"
+    extra_tags["value"] = value
+    single_tag_renderable_string "input", extra_tags
   end
 
   def center extra_tags={}, &html_block

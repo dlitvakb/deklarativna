@@ -8,6 +8,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<html></html>", html
     assert_equal "<head></head>", head
     assert_equal "<title></title>", title
+    assert_equal "<link href=\"\" rel=\"\" />", link
+    assert_equal "<meta />", meta
     assert_equal "<script type=\"\"></script>", script
     assert_equal "<style type=\"\"></style>", style
     assert_equal "<body></body>", body
@@ -28,6 +30,11 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<li></li>", li
     assert_equal "<a href=\"\"></a>", a
     assert_equal "<form method=\"\" action=\"\"></form>", form
+    assert_equal "<input name=\"\" type=\"text\" />", text_input
+    assert_equal "<input name=\"\" type=\"password\" />", password_input
+    assert_equal "<input name=\"\" type=\"radio\" value=\"\" />", radio_input
+    assert_equal "<input name=\"\" type=\"checkbox\" value=\"\" />", checkbox_input
+    assert_equal "<input value=\"Submit\" type=\"submit\" />", submit
     assert_equal "<center></center>", center
     assert_equal "<dd></dd>", dd
     assert_equal "<dl></dl>", dl
