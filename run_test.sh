@@ -1,0 +1,2 @@
+ruby _deklarativna_test.rb
+ruby _deklarativna_core_test.rb
