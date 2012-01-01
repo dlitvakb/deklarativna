@@ -19,20 +19,18 @@ require 'deklarativna_utils'
 
 include Deklarativna
 
-renderable = html {
-    [
-      head {
-          style {
-              "p { float: right; color: #456546 }"
-          }
-      },
-      body {
-          p {
-              "Hello World!"
-          }
-      }
-    ]
-}
+renderable = html {[
+              head {
+                  style {
+                      "p { float: right; color: #456546 }"
+                  }
+              },
+              body {
+                  p {
+                      "Hello World!"
+                  }
+              }
+            ]}
 
 HTMLExporter.new.launch_rendered_html_on_browser renderable
 ```
