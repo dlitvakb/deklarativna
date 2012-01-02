@@ -15,8 +15,9 @@ with the most popular web frameworks
 ##Current Status
 All *HTML* common tags are implemented - frame, iframe and some html5 tags
 had not been added.
-Partial support for *XML* tags with *xml_single_tag* and *xml_double_tag*
-is added.
+Support for *XML* tags with *xml_single_tag* and *xml_double_tag*
+is added. Thou to add attributes to your double_tag you need to create
+your own helper methods.
 
 Core module classes and helpers have *full support* for attributes.
 
