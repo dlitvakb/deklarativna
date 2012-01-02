@@ -31,12 +31,12 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<ol></ol>", ol
     assert_equal "<li></li>", li
     assert_equal "<a href=\"\"></a>", a
-    assert_equal "<form method=\"\" action=\"\"></form>", form
+    assert_equal "<form action=\"\" method=\"\"></form>", form
     assert_equal "<input name=\"\" type=\"text\" />", text_input
     assert_equal "<input name=\"\" type=\"password\" />", password_input
-    assert_equal "<input name=\"\" type=\"radio\" value=\"\" />", radio_input
-    assert_equal "<input name=\"\" type=\"checkbox\" value=\"\" />", checkbox_input
-    assert_equal "<input value=\"Submit\" type=\"submit\" />", submit
+    assert_equal "<input value=\"\" name=\"\" type=\"radio\" />", radio_input
+    assert_equal "<input value=\"\" name=\"\" type=\"checkbox\" />", checkbox_input
+    assert_equal "<input type=\"submit\" value=\"Submit\" />", submit
     assert_equal "<center></center>", center
     assert_equal "<dd></dd>", dd
     assert_equal "<dl></dl>", dl
