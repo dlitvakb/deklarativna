@@ -55,27 +55,27 @@ class DeklarativnaCoreTest < Test::Unit::TestCase
   def test_extra_tags
     renderable = SingleTagRenderable.new { |instance|
       instance.tag_name = "link"
-      instance.extra_tags = {"rel"=>"stylesheet/css",
+      instance.attributes = {"rel"=>"stylesheet/css",
                              "src"=>"/style.css"}
     }
     assert_equal "<link rel=\"stylesheet/css\" src=\"/style.css\" />", renderable.to_s
 
     renderable = SingleTagRenderable.new { |instance|
       instance.tag_name = "link"
-      instance.extra_tags = {"rel"=>"stylesheet/css",
+      instance.attributes = {"rel"=>"stylesheet/css",
                              "src"=>"/style2.css"}
     }
     assert_equal "<link rel=\"stylesheet/css\" src=\"/style2.css\" />", renderable.to_s
 
     renderable = TextRenderable.new { |instance|
       instance.tag_name = "script"
-      instance.extra_tags = {"type"=>"text/javascript"}
+      instance.attributes = {"type"=>"text/javascript"}
     }
     assert_equal "<script type=\"text/javascript\"></script>", renderable.to_s
 
     renderable = NestingRenderable.new { |instance|
       instance.tag_name = "body"
-      instance.extra_tags = {"class"=>"some-class"}
+      instance.attributes = {"class"=>"some-class"}
       instance.content = Proc.new {
         TextRenderable.new { |instance|
           instance.tag_name = "h1"
@@ -87,7 +87,7 @@ class DeklarativnaCoreTest < Test::Unit::TestCase
 
     renderable = CommentRenderable.new { |instance|
       instance.content = Proc.new { "Hi!" }
-      instance.extra_tags = {"nothing"=>"will happen"}
+      instance.attributes = {"nothing"=>"will happen"}
     }
     assert_equal "<!--Hi!-->", renderable.to_s
   end
