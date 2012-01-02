@@ -31,12 +31,12 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<ol></ol>", ol
     assert_equal "<li></li>", li
     assert_equal "<a href=\"\"></a>", a
-    assert_equal "<form method=\"\" action=\"\"></form>", form
+    assert_equal "<form action=\"\" method=\"\"></form>", form
     assert_equal "<input name=\"\" type=\"text\" />", text_input
     assert_equal "<input name=\"\" type=\"password\" />", password_input
     assert_equal "<input name=\"\" type=\"radio\" value=\"\" />", radio_input
     assert_equal "<input name=\"\" type=\"checkbox\" value=\"\" />", checkbox_input
-    assert_equal "<input value=\"Submit\" type=\"submit\" />", submit
+    assert_equal "<input type=\"submit\" value=\"Submit\" />", submit
     assert_equal "<center></center>", center
     assert_equal "<dd></dd>", dd
     assert_equal "<dl></dl>", dl
@@ -49,7 +49,7 @@ class DeklarativnaTest < Test::Unit::TestCase
 
     assert_equal "<br />", br
     assert_equal "<!---->", comment
-    assert_equal "<img src=\"\" alt=\"\" />", img
+    assert_equal "<img alt=\"\" src=\"\" />", img
 
     assert_equal "<mysingletag />", (xml_single_tag "mysingletag")
     assert_equal "<mydoubletag></mydoubletag>", (xml_double_tag "mydoubletag")
@@ -108,13 +108,13 @@ class DeklarativnaTest < Test::Unit::TestCase
 
   def test_img
     renderable = img src="/this.jpg"
-    assert_equal "<img src=\"/this.jpg\" alt=\"\" />", renderable
+    assert_equal "<img alt=\"\" src=\"/this.jpg\" />", renderable
 
     renderable = img src="", alt="a photo"
-    assert_equal "<img src=\"\" alt=\"a photo\" />", renderable
+    assert_equal "<img alt=\"a photo\" src=\"\" />", renderable
 
     renderable = img src="/this.jpg", alt="a photo"
-    assert_equal "<img src=\"/this.jpg\" alt=\"a photo\" />", renderable
+    assert_equal "<img alt=\"a photo\" src=\"/this.jpg\" />", renderable
   end
 
 end

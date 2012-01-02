@@ -9,9 +9,10 @@ module Deklarativna
 
     def render_extra_tags
       rendering_tags = []
-      if @extra_tags.respond_to? :each_pair
-        @extra_tags.each_pair do |k, v|
-          rendering_tags.push "#{k}=\"#{v}\""
+      attributes = @extra_tags.sort if @extra_tags.respond_to? :sort
+      if attributes.respond_to? :each
+        attributes.each do |e|
+          rendering_tags.push "#{e[0]}=\"#{e[1]}\""
         end
       end
       return " " + (rendering_tags.join " ") if !rendering_tags.empty?
