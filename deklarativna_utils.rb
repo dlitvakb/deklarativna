@@ -16,9 +16,10 @@ module Deklarativna
     end
 
     #Requires Firefox or Chrome
-    def launch_rendered_html_on_browser rendered_html
+    def launch_rendered_html_on_browser rendered_html, filename=nil
+      filename ||= @@default_filename
       launch_file_on_browser(
-        render_to_file @@default_filename,
+        render_to_file filename,
         rendered_html
       )
     end
