@@ -2,16 +2,30 @@ require 'deklarativna_core'
 
 module Deklarativna
 
-  def html attributes={}, &html_block
-    nesting_renderable_string "html", html_block, attributes
-  end
+  def self.included(base)
+    nesting_renderables = ["html", "head", "body", "p", "div", "span",
+                           "table", "tr", "td", "ul", "ol", "li",
+                           "center", "dd", "dl", "dt", "i", "b",
+                           "em", "strong"]
+    nesting_renderables.each do
+      |e|
+      send :define_method, e do
+        |*args, &block|
+        attributes = args[0] if !args.nil?
+        nesting_renderable_string e, block, attributes
+      end
+    end
 
-  def head attributes={}, &html_block
-    nesting_renderable_string "head", html_block, attributes
-  end
-
-  def title &page_title_block
-    text_renderable_string "title", page_title_block
+    text_renderables = ["title", "pre"]
+    (1..6).each { |e| text_renderables.push "h#{e}" }
+    text_renderables.each do
+      |e|
+      send :define_method, e do
+        |*args, &block|
+        attributes = args[0] if !args.nil?
+        text_renderable_string e, block, attributes
+      end
+    end
   end
 
   def link rel="", href="", attributes={}
@@ -40,70 +54,6 @@ module Deklarativna
 
   def css attributes={}, &style_text_block
     style "text/css", attributes, &style_text_block
-  end
-
-  def body attributes={}, &html_block
-    nesting_renderable_string "body", html_block, attributes
-  end
-
-  def h1 attributes={}, &html_block
-    text_renderable_string "h1", html_block, attributes
-  end
-
-  def h2 attributes={}, &html_block
-    text_renderable_string "h2", html_block, attributes
-  end
-
-  def h3 attributes={}, &html_block
-    text_renderable_string "h3", html_block, attributes
-  end
-
-  def h4 attributes={}, &html_block
-    text_renderable_string "h4", html_block, attributes
-  end
-
-  def h5 attributes={}, &html_block
-    text_renderable_string "h5", html_block, attributes
-  end
-
-  def h6 attributes={}, &html_block
-    text_renderable_string "h6", html_block, attributes
-  end
-
-  def p attributes={}, &html_block
-    nesting_renderable_string "p", html_block, attributes
-  end
-
-  def div attributes={}, &html_block
-    nesting_renderable_string "div", html_block, attributes
-  end
-
-  def span attributes={}, &html_block
-    nesting_renderable_string "span", html_block, attributes
-  end
-
-  def table attributes={}, &html_block
-    nesting_renderable_string "table", html_block, attributes
-  end
-
-  def tr attributes={}, &html_block
-    nesting_renderable_string "tr", html_block, attributes
-  end
-
-  def td attributes={}, &html_block
-    nesting_renderable_string "td", html_block, attributes
-  end
-
-  def ul attributes={}, &html_block
-    nesting_renderable_string "ul", html_block, attributes
-  end
-
-  def ol attributes={}, &html_block
-    nesting_renderable_string "ol", html_block, attributes
-  end
-
-  def li attributes={}, &html_block
-    nesting_renderable_string "li", html_block, attributes
   end
 
   def a href="", attributes={}, &html_block
@@ -137,42 +87,6 @@ module Deklarativna
     attributes["type"] = "submit"
     attributes["value"] = value
     single_tag_renderable_string "input", attributes
-  end
-
-  def center attributes={}, &html_block
-    nesting_renderable_string "center", html_block, attributes
-  end
-
-  def dd attributes={}, &html_block
-    nesting_renderable_string "dd", html_block, attributes
-  end
-
-  def dl attributes={}, &html_block
-    nesting_renderable_string "dl", html_block, attributes
-  end
-
-  def dt attributes={}, &html_block
-    nesting_renderable_string "dt", html_block, attributes
-  end
-
-  def i attributes={}, &html_block
-    nesting_renderable_string "i", html_block, attributes
-  end
-
-  def b attributes={}, &html_block
-    nesting_renderable_string "b", html_block, attributes
-  end
-
-  def em attributes={}, &html_block
-    nesting_renderable_string "em", html_block, attributes
-  end
-
-  def strong attributes={}, &html_block
-    nesting_renderable_string "strong", html_block, attributes
-  end
-
-  def pre attributes={}, &preformatted_text_block
-    text_renderable_string "pre", preformatted_text_block, attributes
   end
 
   def br attributes={}
