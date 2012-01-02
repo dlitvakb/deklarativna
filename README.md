@@ -18,7 +18,8 @@ had not been added.
 Partial support for *XML* tags with *xml_single_tag* and *xml_double_tag*
 is added.
 
-Core module classes and helpers have *full support* for attributes
+Core module classes and helpers have *full support* for attributes.
+
 ```ruby
 require 'deklarativna_core'
 include Deklarativna
