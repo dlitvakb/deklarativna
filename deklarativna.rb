@@ -3,27 +3,37 @@ require 'deklarativna_core'
 module Deklarativna
 
   def self.included(base)
+    def self.create_block_renderable_methods method_list, render_function
+      method_list.each do
+        |method_name|
+        send :define_method, method_name do
+          |*args, &block|
+          attributes = args[0] if !args.nil?
+          (method render_function).call method_name, block, attributes
+        end
+      end
+    end
+
     nesting_renderables = ["html", "head", "body", "p", "div", "span",
                            "table", "tr", "td", "ul", "ol", "li",
                            "center", "dd", "dl", "dt", "i", "b",
                            "em", "strong"]
-    nesting_renderables.each do
-      |e|
-      send :define_method, e do
-        |*args, &block|
-        attributes = args[0] if !args.nil?
-        nesting_renderable_string e, block, attributes
-      end
-    end
 
     text_renderables = ["title", "pre"]
     (1..6).each { |e| text_renderables.push "h#{e}" }
-    text_renderables.each do
+
+    create_block_renderable_methods nesting_renderables,
+                                    :nesting_renderable_string
+    create_block_renderable_methods text_renderables,
+                                    :text_renderable_string
+
+    single_tag_renderables = ["meta", "br"]
+    single_tag_renderables.each do
       |e|
       send :define_method, e do
-        |*args, &block|
+        |*args|
         attributes = args[0] if !args.nil?
-        text_renderable_string e, block, attributes
+        single_tag_renderable_string e, attributes
       end
     end
   end
@@ -32,10 +42,6 @@ module Deklarativna
     attributes["href"] = href
     attributes["rel"] = rel
     single_tag_renderable_string "link", attributes
-  end
-
-  def meta attributes={}
-    single_tag_renderable_string "meta", attributes
   end
 
   def script type="", attributes={}, &script_text_block
@@ -87,10 +93,6 @@ module Deklarativna
     attributes["type"] = "submit"
     attributes["value"] = value
     single_tag_renderable_string "input", attributes
-  end
-
-  def br attributes={}
-    single_tag_renderable_string "br", attributes
   end
 
   def comment &comment_block
