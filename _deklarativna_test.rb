@@ -117,4 +117,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<img alt=\"a photo\" src=\"/this.jpg\" />", renderable
   end
 
+  def test_nesting_elements_can_have_attributes
+    renderable = p ("class"=>"foo") { "something" }
+    assert_equal "<p class=\"foo\">something</p>", renderable
+  end
 end
