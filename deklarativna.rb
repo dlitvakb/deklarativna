@@ -29,9 +29,17 @@ module Deklarativna
     text_renderable_string "script", script_text_block, extra_tags
   end
 
+  def javascript extra_tags={}, &script_text_block
+    script "text/javascript", extra_tags, &script_text_block
+  end
+
   def style type="", extra_tags={}, &style_text_block
     extra_tags["type"] = type
     text_renderable_string "style", style_text_block, extra_tags
+  end
+
+  def css extra_tags={}, &style_text_block
+    style "text/css", extra_tags, &style_text_block
   end
 
   def body extra_tags={}, &html_block

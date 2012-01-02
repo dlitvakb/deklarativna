@@ -11,7 +11,9 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<link href=\"\" rel=\"\" />", link
     assert_equal "<meta />", meta
     assert_equal "<script type=\"\"></script>", script
+    assert_equal "<script type=\"text/javascript\"></script>", javascript
     assert_equal "<style type=\"\"></style>", style
+    assert_equal "<style type=\"text/css\"></style>", css
     assert_equal "<body></body>", body
     assert_equal "<h1></h1>", h1
     assert_equal "<h2></h2>", h2
@@ -73,28 +75,28 @@ class DeklarativnaTest < Test::Unit::TestCase
 
     renderable = html {[
                    head {
-                     script
+                     javascript
                    },
                    body {[
                      p { "hola" },
                      p { "chau" }
                    ]}
                  ]}
-    assert_equal "<html><head><script type=\"\"></script></head><body><p>hola</p><p>chau</p></body></html>", renderable
+    assert_equal "<html><head><script type=\"text/javascript\"></script></head><body><p>hola</p><p>chau</p></body></html>", renderable
   end
 
   def test_style_can_render_css
-    renderable = style {
+    renderable = css {
       "h1, p {text-align: left;}"
     }
-    assert_equal "<style type=\"\">h1, p {text-align: left;}</style>", renderable
+    assert_equal "<style type=\"text/css\">h1, p {text-align: left;}</style>", renderable
   end
 
-  def test_script_can_render_script
-    renderable = script {
+  def test_script_can_render_javascript
+    renderable = javascript {
       "var y = 2; alert(y);"
     }
-    assert_equal "<script type=\"\">var y = 2; alert(y);</script>", renderable
+    assert_equal "<script type=\"text/javascript\">var y = 2; alert(y);</script>", renderable
   end
 
   def test_comment_block
