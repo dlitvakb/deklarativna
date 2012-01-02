@@ -126,13 +126,11 @@ module Deklarativna
   end
 
   def radio_input name="", value="", attributes={}
-    attributes["value"] = value
-    form_input_renderable_string name, "radio", attributes
+    input_with_value "radio",  name, value, attributes
   end
 
   def checkbox_input name="", value="", attributes={}
-    attributes["value"] = value
-    form_input_renderable_string name, "checkbox", attributes
+    input_with_value "checkbox", name, value, attributes
   end
 
   def submit value="Submit", attributes={}

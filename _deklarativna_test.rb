@@ -118,7 +118,7 @@ class DeklarativnaTest < Test::Unit::TestCase
   end
 
   def test_nesting_elements_can_have_attributes
-    renderable = p ("class"=>"foo") { "something" }
+    renderable = p("class"=>"foo") { "something" }
     assert_equal "<p class=\"foo\">something</p>", renderable
   end
 end

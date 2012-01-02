@@ -100,4 +100,9 @@ module Deklarativna
     attributes["type"] = type
     single_tag_renderable_string "input", attributes
   end
+
+  def input_with_value tag_name, name, value, attributes
+    attributes["value"] = value
+    form_input_renderable_string name, tag_name, attributes
+  end
 end
