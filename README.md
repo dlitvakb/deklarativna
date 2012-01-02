@@ -21,6 +21,7 @@ is added.
 Core module classes and helpers have *full support* for attributes.
 
 ```ruby
+require 'deklarativna'
 require 'deklarativna_core'
 include Deklarativna
 
