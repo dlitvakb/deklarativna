@@ -21,7 +21,7 @@ include Deklarativna
 
 renderable = html {[
               head {
-                  style {
+                  css {
                       "p { float: right; color: #456546 }"
                   }
               },

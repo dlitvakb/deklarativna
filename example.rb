@@ -5,7 +5,7 @@ include Deklarativna
 
 renderable = html {[
                head {
-                 style {
+                 css {
                    "p { font-size: 38px; color: red; }"
                  }
                },
