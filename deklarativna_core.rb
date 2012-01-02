@@ -51,13 +51,7 @@ module Deklarativna
     end
   end
 
-  class TextRenderable < DoubleTagRenderable
-    def _proc_call
-      @content.call
-    end
-  end
-
-  class CommentRenderable < TextRenderable
+  class CommentRenderable < NestingRenderable
     def to_s
       "<!--#{proc_call}-->"
     end
@@ -85,10 +79,6 @@ module Deklarativna
 
   def nesting_renderable_string tag_name, block, attributes={}
     renderable_string NestingRenderable, block, attributes, tag_name
-  end
-
-  def text_renderable_string tag_name, block, attributes={}
-    renderable_string TextRenderable, block, attributes, tag_name
   end
 
   def comment_renderable_string comment_block

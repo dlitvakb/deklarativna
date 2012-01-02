@@ -20,18 +20,6 @@ class DeklarativnaCoreTest < Test::Unit::TestCase
     assert_equal "<html><body></body></html>", renderable.to_s
   end
 
-  def test_text_renderable
-    renderable = TextRenderable.new { |instance|
-                   instance.tag_name = "script"
-                 }
-    assert_equal "<script></script>", renderable.to_s
-    renderable = TextRenderable.new { |instance|
-                   instance.tag_name = "script"
-                   instance.content = Proc.new {"var y = 2; alert(y);"}
-                 }
-    assert_equal "<script>var y = 2; alert(y);</script>", renderable.to_s
-  end
-
   def test_comment_renderable
     renderable = CommentRenderable.new { |instance|
                    instance.content = Proc.new {
@@ -67,7 +55,7 @@ class DeklarativnaCoreTest < Test::Unit::TestCase
     }
     assert_equal "<link rel=\"stylesheet/css\" src=\"/style2.css\" />", renderable.to_s
 
-    renderable = TextRenderable.new { |instance|
+    renderable = NestingRenderable.new { |instance|
       instance.tag_name = "script"
       instance.attributes = {"type"=>"text/javascript"}
     }
@@ -77,7 +65,7 @@ class DeklarativnaCoreTest < Test::Unit::TestCase
       instance.tag_name = "body"
       instance.attributes = {"class"=>"some-class"}
       instance.content = Proc.new {
-        TextRenderable.new { |instance|
+        NestingRenderable.new { |instance|
           instance.tag_name = "h1"
           instance.content = Proc.new { "Hi!" }
         }

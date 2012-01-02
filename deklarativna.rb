@@ -17,15 +17,12 @@ module Deklarativna
     nesting_renderables = ["html", "head", "body", "p", "div", "span",
                            "table", "tr", "td", "ul", "ol", "li",
                            "center", "dd", "dl", "dt", "i", "b",
-                           "em", "strong"]
+                           "em", "strong", "title", "pre"]
 
-    text_renderables = ["title", "pre"]
-    (1..6).each { |e| text_renderables.push "h#{e}" }
+    (1..6).each { |e| nesting_renderables.push "h#{e}" }
 
     create_block_renderable_methods nesting_renderables,
                                     :nesting_renderable_string
-    create_block_renderable_methods text_renderables,
-                                    :text_renderable_string
 
     single_tag_renderables = ["meta", "br"]
     single_tag_renderables.each do
@@ -46,7 +43,7 @@ module Deklarativna
 
   def script type="", attributes={}, &script_text_block
     attributes["type"] = type
-    text_renderable_string "script", script_text_block, attributes
+    nesting_renderable_string "script", script_text_block, attributes
   end
 
   def javascript attributes={}, &script_text_block
@@ -55,7 +52,7 @@ module Deklarativna
 
   def style type="", attributes={}, &style_text_block
     attributes["type"] = type
-    text_renderable_string "style", style_text_block, attributes
+    nesting_renderable_string "style", style_text_block, attributes
   end
 
   def css attributes={}, &style_text_block
