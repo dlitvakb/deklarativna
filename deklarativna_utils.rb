@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'launchy'
 
-module Deklarativna
+module DeklarativnaUtils
   class HTMLExporter
     @@default_filename = 'rendered_html.html'
 

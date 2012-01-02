@@ -33,7 +33,7 @@ class ChildTemplate < BaseTemplate
   end
 end
 
-include Deklarativna
+include DeklarativnaUtils
 
 HTMLExporter.new.launch_rendered_html_on_browser BaseTemplate.new.render, "base.html"
 HTMLExporter.new.launch_rendered_html_on_browser ChildTemplate.new.render, "child.html"

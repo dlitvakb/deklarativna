@@ -46,6 +46,7 @@ require 'deklarativna'
 require 'deklarativna_utils'
 
 include Deklarativna
+include DeklarativnaUtils
 
 renderable = html {[
               head {
