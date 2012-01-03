@@ -74,15 +74,4 @@ module Deklarativna
   def comment_renderable_string comment_block
     renderable_string CommentRenderable, comment_block
   end
-
-  def form_input_renderable_string name, type, attributes
-    attributes["name"] = name
-    attributes["type"] = type
-    single_tag_renderable_string "input", attributes
-  end
-
-  def input_with_value tag_name, name, value, attributes
-    attributes["value"] = value
-    form_input_renderable_string name, tag_name, attributes
-  end
 end
