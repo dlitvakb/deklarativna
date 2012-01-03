@@ -35,10 +35,6 @@ class BaseTemplate
 
   def _content
   end
-
-  def to_file
-    HTMLExporter.new.render_to_file @url, render
-  end
 end
 
 class IndexTemplate < BaseTemplate
