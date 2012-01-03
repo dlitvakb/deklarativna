@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Litvak"]
   s.date = "2012-01-03"
-  s.description = ""
+  s.description = "A Declarative HTML embedded DSL for HTML/XML Templating in Ruby,\n  This gem was intended to be use as teaching material for universitary students."
   s.email = "david.litvakb@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE",
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "deklarativna.gemspec",
     "examples/class_based_example.rb",
     "examples/dinamic_sinatra_example.rb",
     "examples/simple_example.rb",
