@@ -65,3 +65,24 @@ module Deklarativna
     nesting_renderable_string tag_name.downcase, html_block, attributes
   end
 end
+
+class BaseTemplate
+  include Deklarativna
+
+  def render
+    html {[
+      head {
+        _head
+      },
+      body {
+        _body
+      }
+    ]}
+  end
+
+  def _head
+  end
+
+  def _body
+  end
+end

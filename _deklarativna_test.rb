@@ -123,4 +123,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     renderable = p("class"=>"foo") { "something" }
     assert_equal "<p class=\"foo\">something</p>", renderable
   end
+
+  def test_base_template
+    assert_equal "<html><head></head><body></body></html>", BaseTemplate.new.render
+  end
 end
