@@ -12,10 +12,10 @@ module Deklarativna
 
     nesting_renderables.each do
       |method_name|
-      send :define_method, method_name do
+      send :define_method, tag_name do
         |*args, &block|
         attributes = args[0] if !args.nil?
-        nesting_renderable_string method_name, block, attributes
+        nesting_renderable_string tag_name, block, attributes
       end
     end
 
