@@ -18,7 +18,8 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/dlitvakb/deklarativna"
   gem.license = "MIT"
   gem.summary = %Q{A Declarative HMTL embedded DSL for HTML/XML Templating in Ruby}
-  gem.description = %Q{}
+  gem.description = %Q{A Declarative HTML embedded DSL for HTML/XML Templating in Ruby,
+  This gem was intended to be use as teaching material for universitary students.}
   gem.email = "david.litvakb@gmail.com"
   gem.authors = ["David Litvak"]
   # dependencies defined in Gemfile
