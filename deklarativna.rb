@@ -11,7 +11,7 @@ module Deklarativna
     (1..6).each { |e| nesting_renderables.push "h#{e}" }
 
     nesting_renderables.each do
-      |method_name|
+      |tag_name|
       send :define_method, tag_name do
         |*args, &block|
         attributes = args[0] if !args.nil?
