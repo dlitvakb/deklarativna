@@ -3,27 +3,21 @@ require 'deklarativna_core'
 module Deklarativna
 
   def self.included(base)
-    def self.create_block_renderable_methods method_list, render_function
-      method_list.each do
-        |method_name|
-        send :define_method, method_name do
-          |*args, &block|
-          attributes = args[0] if !args.nil?
-          (method render_function).call method_name, block, attributes
-        end
-      end
-    end
-
     nesting_renderables = ["html", "head", "body", "p", "div", "span",
                            "table", "tr", "td", "ul", "ol", "li",
                            "center", "dd", "dl", "dt", "i", "b",
                            "em", "strong", "title", "pre", "script",
                            "style", "a", "form"]
-
     (1..6).each { |e| nesting_renderables.push "h#{e}" }
 
-    create_block_renderable_methods nesting_renderables,
-                                    :nesting_renderable_string
+    nesting_renderables.each do
+      |method_name|
+      send :define_method, method_name do
+        |*args, &block|
+        attributes = args[0] if !args.nil?
+        nesting_renderable_string method_name, block, attributes
+      end
+    end
 
     single_tag_renderables = ["meta", "br", "link", "input", "img"]
     single_tag_renderables.each do
