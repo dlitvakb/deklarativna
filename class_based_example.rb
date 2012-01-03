@@ -7,7 +7,11 @@ class ChildTemplate < BaseTemplate
   end
 
   def _body
-    [p { "how cool is this??" }, p { "really cool" }]
+    [
+      h1 { "Deklarativna" },
+      p { "how cool is this??" },
+      p { "really cool" }
+    ]
   end
 end
 

@@ -20,7 +20,7 @@ is added.
 Core module classes and helpers have *full support* for attributes.
 
 ##Usage
-For simple templating you can use the function approach
+###Function Based Approach
 
 ```ruby
 require 'deklarativna'
@@ -45,34 +45,11 @@ renderable = html {[
 HTMLExporter.new.launch_rendered_html_on_browser renderable
 ```
 
-For advance templating, supporting *inheritance* you can use a *Class
-Based* approach
+###Class Based Approach
 
 ```ruby
 require 'deklarativna'
 require 'deklarativna_utils'
-
-class BaseTemplate
-  include Deklarativna
-
-  def render
-    html {[
-      head {
-        _head
-      },
-      body {[
-        h1 { "My Totally Awesome Example" },
-        _body
-      ]}
-    ]}
-  end
-
-  def _head
-  end
-
-  def _body
-  end
-end
 
 class ChildTemplate < BaseTemplate
   def _head
@@ -80,12 +57,55 @@ class ChildTemplate < BaseTemplate
   end
 
   def _body
-    [p { "how cool is this??" }, p { "really cool" }]
+    [
+      h1 { "Deklarativna" },
+      p { "how cool is this??" },
+      p { "really cool" }
+    ]
   end
 end
 
 include DeklarativnaUtils
 
-HTMLExporter.new.launch_rendered_html_on_browser BaseTemplate.new.render, "base.html"
 HTMLExporter.new.launch_rendered_html_on_browser ChildTemplate.new.render, "child.html"
 ```
+
+###Sinatra Integration
+
+```ruby
+require 'rubygems'
+require 'sinatra/base'
+require 'deklarativna'
+
+class IndexTemplate < BaseTemplate
+  def _body
+    [
+      p { "Testing Dinamic File Generation using sinatra" },
+      table("border"=>"1") {[
+        tr {[
+          td { "row 1, value 1" },
+          td { "row 1, value 2" }
+        ]},
+        tr {[
+          td("colspan"=>"2") { "Only value in this row" }
+        ]}
+      ]}
+    ]
+  end
+end
+
+class DeklarativnaSinatra < Sinatra::Base
+  get '/' do
+    IndexTemplate.new.render
+  end
+end
+
+DeklarativnaSinatra.run!
+```
+
+Test this by running
+
+```bash
+$ruby dinamic_sinatra_example.rb
+```
+And open your browser on **localhost:4567**

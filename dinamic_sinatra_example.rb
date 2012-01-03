@@ -1,44 +1,9 @@
 require 'rubygems'
 require 'sinatra/base'
 require 'deklarativna'
-require 'deklarativna_utils'
-
-class BaseTemplate
-  include Deklarativna
-  include DeklarativnaUtils
-
-  def render
-    html {[
-      head {[
-        title {
-          _title
-        },
-        _head
-      ]},
-      body {[
-        h1 {
-          "Deklarativna"
-        },
-        div {
-          _content
-        }
-      ]}
-    ]}
-  end
-
-  def _title
-    "Deklarativna"
-  end
-
-  def _head
-  end
-
-  def _content
-  end
-end
 
 class IndexTemplate < BaseTemplate
-  def _content
+  def _body
     [
       p { "Testing Dinamic File Generation using sinatra" },
       table("border"=>"1") {[
