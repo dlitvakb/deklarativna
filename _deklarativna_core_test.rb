@@ -40,7 +40,7 @@ class DeklarativnaCoreTest < Test::Unit::TestCase
     assert_equal "<link />", renderable.to_s
   end
 
-  def test_extra_tags
+  def test_attributes_display_correctly
     renderable = SingleTagRenderable.new { |instance|
       instance.tag_name = "link"
       instance.attributes = {"rel"=>"stylesheet/css",

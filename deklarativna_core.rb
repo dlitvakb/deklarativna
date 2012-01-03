@@ -19,7 +19,7 @@ module Deklarativna
     end
   end
 
-  class DoubleTagRenderable < Renderable
+  class NestingRenderable < Renderable
     attr_accessor :content
 
     def to_s
@@ -34,20 +34,10 @@ module Deklarativna
     end
 
     def _proc_call
-      raise Exception.new
-    end
-  end
-
-  class NestingRenderable < DoubleTagRenderable
-    def render_block block_result
-      if block_result.respond_to? :join
-        return block_result.join("")
+      if @content.call.respond_to? :join
+        return @content.call.join("")
       end
-      block_result
-    end
-
-    def _proc_call
-      render_block @content.call
+      @content.call
     end
   end
 
