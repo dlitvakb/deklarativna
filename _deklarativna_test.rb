@@ -8,11 +8,11 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<html></html>", html
     assert_equal "<head></head>", head
     assert_equal "<title></title>", title
-    assert_equal "<link href=\"\" rel=\"\" />", link
+    assert_equal "<link />", link
     assert_equal "<meta />", meta
-    assert_equal "<script type=\"\"></script>", script
+    assert_equal "<script></script>", script
     assert_equal "<script type=\"text/javascript\"></script>", javascript
-    assert_equal "<style type=\"\"></style>", style
+    assert_equal "<style></style>", style
     assert_equal "<style type=\"text/css\"></style>", css
     assert_equal "<body></body>", body
     assert_equal "<h1></h1>", h1
@@ -30,13 +30,15 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<ul></ul>", ul
     assert_equal "<ol></ol>", ol
     assert_equal "<li></li>", li
-    assert_equal "<a href=\"\"></a>", a
-    assert_equal "<form action=\"\" method=\"\"></form>", form
-    assert_equal "<input name=\"\" type=\"text\" />", text_input
-    assert_equal "<input name=\"\" type=\"password\" />", password_input
-    assert_equal "<input name=\"\" type=\"radio\" value=\"\" />", radio_input
-    assert_equal "<input name=\"\" type=\"checkbox\" value=\"\" />", checkbox_input
-    assert_equal "<input type=\"submit\" value=\"Submit\" />", submit
+    assert_equal "<a></a>", a
+    assert_equal "<form></form>", form
+    assert_equal "<input />", input
+    assert_equal "<input type=\"text\" />", text
+    assert_equal "<input type=\"password\" />", password
+    assert_equal "<input type=\"radio\" />", radio
+    assert_equal "<input type=\"checkbox\" />", checkbox
+    assert_equal "<input type=\"textarea\" />", textarea
+    assert_equal "<input type=\"submit\" />", submit
     assert_equal "<center></center>", center
     assert_equal "<dd></dd>", dd
     assert_equal "<dl></dl>", dl
@@ -48,8 +50,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<pre></pre>", pre
 
     assert_equal "<br />", br
+    assert_equal "<img />", img
     assert_equal "<!---->", comment
-    assert_equal "<img alt=\"\" src=\"\" />", img
 
     assert_equal "<mysingletag />", (xml_single_tag "mysingletag")
     assert_equal "<mydoubletag></mydoubletag>", (xml_double_tag "mydoubletag")
@@ -107,13 +109,13 @@ class DeklarativnaTest < Test::Unit::TestCase
   end
 
   def test_img
-    renderable = img src="/this.jpg"
-    assert_equal "<img alt=\"\" src=\"/this.jpg\" />", renderable
+    renderable = img "src"=>"/this.jpg"
+    assert_equal "<img src=\"/this.jpg\" />", renderable
 
-    renderable = img src="", alt="a photo"
-    assert_equal "<img alt=\"a photo\" src=\"\" />", renderable
+    renderable = img "alt"=>"a photo"
+    assert_equal "<img alt=\"a photo\" />", renderable
 
-    renderable = img src="/this.jpg", alt="a photo"
+    renderable = img "src"=>"/this.jpg", "alt"=>"a photo"
     assert_equal "<img alt=\"a photo\" src=\"/this.jpg\" />", renderable
   end
 
