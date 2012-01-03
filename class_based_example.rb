@@ -17,4 +17,4 @@ end
 
 include DeklarativnaUtils
 
-HTMLExporter.new.launch_rendered_html_on_browser ChildTemplate.new.render, "child.html"
+HTMLExporter.new.launch_rendered_html_on_browser ChildTemplate.new.render
