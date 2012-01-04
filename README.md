@@ -19,6 +19,13 @@ Support for *XML* tags with *xml_single_tag* and *xml_double_tag*
 is added. 
 Core module classes and helpers have *full support* for attributes.
 
+##Instalation
+You can download this gem from RubyGems.org by running
+
+```bash
+$ gem install deklarativna
+```
+
 ##Usage
 ###Function Based Approach
 
