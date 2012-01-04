@@ -8,7 +8,7 @@ to write *human readable code* with not much effort.
 
 ##Conception
 This work has been started as a tool for teaching *declarative programming*
-and *DSL creation* to univeritary students.
+and *DSL creation* to universitary students.
 This is a work in progress and *I hope* someday will have integration
 with the most popular web frameworks
 
