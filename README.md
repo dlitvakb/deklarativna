@@ -12,15 +12,15 @@ and *DSL creation* to universitary students.
 This is a work in progress and *I hope* someday will have integration
 with the most popular web frameworks
 
-#### Updates
-*Sinatra* integration is demonstrated on the examples
-*HTML/XML* Fully supported
-*rubygem* released
+### Updates
+#### *Sinatra* integration is demonstrated on the examples
+#### *HTML/XML* Fully supported
+#### *rubygem* released
 
-**Next Steps:**
-*Rails* plugin
-*CSS 2, 3* wrapper??
-*jQuery* helpers ??
+### **Next Steps:**
+#### *Rails* plugin
+#### *CSS 2, 3* wrapper??
+#### *jQuery* helpers ??
 
 
 ##Current Status
