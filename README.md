@@ -12,12 +12,22 @@ and *DSL creation* to universitary students.
 This is a work in progress and *I hope* someday will have integration
 with the most popular web frameworks
 
+#### Updates
+*Sinatra* integration is demonstrated on the examples
+*HTML/XML* Fully supported
+*rubygem* released
+
+**Next Steps:**
+*Rails* plugin
+*CSS 2, 3* wrapper??
+*jQuery* helpers ??
+
+
 ##Current Status
 All *HTML* common tags are implemented - frame, iframe and some html5 tags
 had not been added.
 Support for *XML* tags with *xml_single_tag* and *xml_double_tag*
 is added. 
-Core module classes and helpers have *full support* for attributes.
 
 ##Installation
 You can download this gem from RubyGems.org by running
@@ -113,6 +123,10 @@ DeklarativnaSinatra.run!
 Test this by running
 
 ```bash
-$ruby dinamic_sinatra_example.rb
+$ ruby dinamic_sinatra_example.rb
 ```
 And open your browser on **localhost:4567**
+
+Now you can surf the examples on the examples directory!
+There are some pretty cool examples, and I will be publishing more
+complex examples over time.
