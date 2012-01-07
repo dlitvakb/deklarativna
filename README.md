@@ -19,14 +19,14 @@ Support for *XML* tags with *xml_single_tag* and *xml_double_tag*
 is added. 
 
 ### Updates
-#### *Sinatra* integration is demonstrated on the examples
-#### *HTML/XML* Fully supported
-#### *rubygem* released
+##### *Sinatra* integration is demonstrated on the examples
+##### *HTML/XML* Fully supported
+##### *rubygem* released
 
 ### **Next Steps:**
-#### *Rails* plugin
-#### *CSS 2, 3* wrapper??
-#### *jQuery* helpers ??
+##### *Rails* plugin
+##### *CSS 2, 3* wrapper??
+##### *jQuery* helpers ??
 
 ##Installation
 You can download this gem from RubyGems.org by running
