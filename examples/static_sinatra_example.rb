@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'sinatra/base'
 require 'deklarativna'
 require 'deklarativna_utils'
