@@ -43,7 +43,7 @@ module Deklarativna
       |type|
       send :define_method, type do
         |*args|
-        attributes = args[9] if !args.nil?
+        attributes = args[0] if !args.nil?
         attributes ||= {}
         attributes["type"] = type
         input attributes
