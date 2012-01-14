@@ -14,7 +14,7 @@ module Deklarativna
     nesting_renderables = ["html", "head", "body", "header", "footer",
                            "p", "div", "span", "table", "tr", "td",
                            "ul", "ol", "li", "center", "dd", "dl",
-                           "dt", "i", "b", "em", "strong", "title",
+                           "dt", "i", "b", "em", "strong", "title", "label",
                            "pre", "script", "style", "a", "form", "textarea"]
     (1..6).each { |e| nesting_renderables.push "h#{e}" }
 
