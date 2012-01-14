@@ -11,11 +11,11 @@ module Deklarativna
   ## Private Method
   # It metaprograms most of the module's methods
   def self.included(base)
-    nesting_renderables = ["html", "head", "body", "p", "div", "span",
-                           "table", "tr", "td", "ul", "ol", "li",
-                           "center", "dd", "dl", "dt", "i", "b",
-                           "em", "strong", "title", "pre", "script",
-                           "style", "a", "form"]
+    nesting_renderables = ["html", "head", "body", "header", "footer",
+                           "p", "div", "span", "table", "tr", "td",
+                           "ul", "ol", "li", "center", "dd", "dl",
+                           "dt", "i", "b", "em", "strong", "title",
+                           "pre", "script", "style", "a", "form", "textarea"]
     (1..6).each { |e| nesting_renderables.push "h#{e}" }
 
     nesting_renderables.each do
@@ -27,7 +27,8 @@ module Deklarativna
       end
     end
 
-    single_tag_renderables = ["meta", "br", "link", "input", "img"]
+    single_tag_renderables = ["meta", "br", "hr",
+                              "link", "input", "img"]
     single_tag_renderables.each do
       |tag_name|
       send :define_method, tag_name do
@@ -37,7 +38,7 @@ module Deklarativna
       end
     end
 
-    form_input_renderables = ["text", "password", "textarea", "checkbox",
+    form_input_renderables = ["text", "password", "checkbox",
                               "radio", "submit"]
     form_input_renderables.each do
       |type|
