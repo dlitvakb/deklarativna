@@ -129,3 +129,5 @@ And open your browser on **localhost:4567**
 Now you can surf the examples on the examples directory!
 There are some pretty cool examples, and I will be publishing more
 complex examples over time.
+
+I'm coding a blog using **Deklarativna**, Check it out! https://github.com/dlitvakb/Blogging-Deklarativna
