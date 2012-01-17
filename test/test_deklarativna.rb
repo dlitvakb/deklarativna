@@ -15,6 +15,8 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<style></style>", style
     assert_equal "<style type=\"text/css\"></style>", css
     assert_equal "<body></body>", body
+    assert_equal "<header></header>", header
+    assert_equal "<footer></footer>", footer
     assert_equal "<h1></h1>", h1
     assert_equal "<h2></h2>", h2
     assert_equal "<h3></h3>", h3
@@ -50,6 +52,7 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<pre></pre>", pre
 
     assert_equal "<br />", br
+    assert_equal "<hr />", hr
     assert_equal "<img />", img
     assert_equal "<!---->", comment
 
