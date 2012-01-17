@@ -37,7 +37,7 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<input type=\"password\" />", password
     assert_equal "<input type=\"radio\" />", radio
     assert_equal "<input type=\"checkbox\" />", checkbox
-    assert_equal "<input type=\"textarea\" />", textarea
+    assert_equal "<textarea></textarea>", textarea
     assert_equal "<input type=\"submit\" />", submit
     assert_equal "<center></center>", center
     assert_equal "<dd></dd>", dd
