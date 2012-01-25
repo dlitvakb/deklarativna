@@ -50,10 +50,57 @@ class DeklarativnaTest < Test::Unit::TestCase
     assert_equal "<em></em>", em
     assert_equal "<strong></strong>", strong
     assert_equal "<pre></pre>", pre
+    assert_equal "<select></select>", select
+    assert_equal "<option></option>", option
+    assert_equal "<article></article>", article
+    assert_equal "<section></section>", section
+    assert_equal "<code></code>", code
+    assert_equal "<abbr></abbr>", abbr
+    assert_equal "<acronym></acronym>", acronym
+    assert_equal "<address></address>", address
+    assert_equal "<bdo></bdo>", bdo
+    assert_equal "<big></big>", big
+    assert_equal "<tt></tt>", tt
+    assert_equal "<small></small>", small
+    assert_equal "<blockquote></blockquote>", blockquote
+    assert_equal "<button></button>", button
+    assert_equal "<caption></caption>", caption
+    assert_equal "<dfn></dfn>", dfn
+    assert_equal "<cite></cite>", cite
+    assert_equal "<code></code>", code
+    assert_equal "<samp></samp>", samp
+    assert_equal "<kbd></kbd>", kbd
+    assert_equal "<var></var>", var
+    assert_equal "<colgroup></colgroup>", colgroup
+    assert_equal "<del></del>", del
+    assert_equal "<ins></ins>", ins
+    assert_equal "<dir></dir>", dir
+    assert_equal "<fieldset></fieldset>", fieldset
+    assert_equal "<legend></legend>", legend
+    assert_equal "<frameset></frameset>", frameset
+    assert_equal "<iframe></iframe>", iframe
+    assert_equal "<noframes></noframes>", noframes
+    assert_equal "<noscript></noscript>", noscript
+    assert_equal "<object></object>", object
+    assert_equal "<optgroup></optgroup>", optgroup
+    assert_equal "<q></q>", q
+    assert_equal "<sub></sub>", sub
+    assert_equal "<sup></sup>", sup
+    assert_equal "<thead></thead>", thead
+    assert_equal "<tfoot></tfoot>", tfoot
+    assert_equal "<tbody></tbody>", tbody
 
     assert_equal "<br />", br
     assert_equal "<hr />", hr
     assert_equal "<img />", img
+    assert_equal "<meta />", meta
+    assert_equal "<base />", base
+    assert_equal "<link />", link
+    assert_equal "<input />", input
+    assert_equal "<col />", col
+    assert_equal "<frame />", frame
+    assert_equal "<param />", param
+
     assert_equal "<!---->", comment
 
     assert_equal "<mysingletag />", (xml_single_tag "mysingletag")
