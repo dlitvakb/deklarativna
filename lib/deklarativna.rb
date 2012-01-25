@@ -15,7 +15,15 @@ module Deklarativna
                            "p", "div", "span", "table", "tr", "td",
                            "ul", "ol", "li", "center", "dd", "dl",
                            "dt", "i", "b", "em", "strong", "title", "label",
-                           "pre", "script", "style", "a", "form", "textarea"]
+                           "pre", "script", "style", "a", "form", "textarea",
+                           "select", "option", "article", "section", "code",
+                           "abbr", "acronym", "address", "bdo", "address",
+                           "big", "tt", "small", "blockquote", "button",
+                           "caption", "dfn", "cite", "code", "samp", "kbd",
+                           "var", "colgroup", "del", "ins", "dir", "fieldset",
+                           "legend", "frameset", "iframe", "noframes",
+                           "noscript", "object", "optgroup", "q","sub", "sup",
+                           "thead", "tfoot", "tbody"]
     (1..6).each { |e| nesting_renderables.push "h#{e}" }
 
     nesting_renderables.each do
@@ -28,7 +36,9 @@ module Deklarativna
     end
 
     single_tag_renderables = ["meta", "br", "hr",
-                              "link", "input", "img"]
+                              "link", "input", "img",
+                              "base", "col", "frame",
+                              "param"]
     single_tag_renderables.each do
       |tag_name|
       send :define_method, tag_name do
