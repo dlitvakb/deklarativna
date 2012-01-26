@@ -13,9 +13,8 @@ This is a work in progress and *I hope* someday will have integration
 with the most popular web frameworks
 
 ##Current Status
-All *HTML* common tags are implemented - frame, iframe and some html5 tags
-had not been added.
-Support for *XML* tags with *xml_single_tag* and *xml_double_tag*
+All *HTML* common tags are implemented.
+Full support for *XML* tags with *xml_single_tag* and *xml_double_tag*
 is added. 
 
 ### Updates
