@@ -4,102 +4,43 @@ require 'deklarativna'
 class DeklarativnaTest < Test::Unit::TestCase
   include Deklarativna
 
+  def assert_double_tag tag_name_symbol
+    assert_equal "<#{tag_name_symbol.id2name}></#{tag_name_symbol.id2name}>",
+                 (self.method tag_name_symbol).call
+  end
+
+  def assert_single_tag tag_name_symbol
+    assert_equal "<#{tag_name_symbol.id2name} />",
+                 (self.method tag_name_symbol).call
+  end
+
   def test_html_renders_single_element
-    assert_equal "<html></html>", html
-    assert_equal "<head></head>", head
-    assert_equal "<title></title>", title
-    assert_equal "<link />", link
-    assert_equal "<meta />", meta
-    assert_equal "<script></script>", script
+    double_tag_renderables = [:html, :head, :title, :script, :style, :body,
+                              :header, :footer, :h1, :h2, :h3, :h4, :h5, :h6,
+                              :p, :div, :span, :table, :tr, :td, :ul, :ol, :li,
+                              :a, :form, :textarea, :center, :dd, :dl, :dt, :i,
+                              :b, :em, :strong, :pre, :select, :option,
+                              :article, :section, :code, :abbr, :acronym,
+                              :address, :bdo, :big, :tt, :small, :blockquote,
+                              :button, :caption, :dfn, :cite, :code, :samp,
+                              :kbd, :var, :colgroup, :del, :ins, :dir,
+                              :fieldset, :legend, :frameset, :iframe,
+                              :noframes, :noscript, :object, :optgroup,
+                              :q, :sub, :sup, :thead, :tfoot, :tbody]
+    double_tag_renderables.each { |e| assert_double_tag e }
+
     assert_equal "<script type=\"text/javascript\"></script>", javascript
-    assert_equal "<style></style>", style
     assert_equal "<style type=\"text/css\"></style>", css
-    assert_equal "<body></body>", body
-    assert_equal "<header></header>", header
-    assert_equal "<footer></footer>", footer
-    assert_equal "<h1></h1>", h1
-    assert_equal "<h2></h2>", h2
-    assert_equal "<h3></h3>", h3
-    assert_equal "<h4></h4>", h4
-    assert_equal "<h5></h5>", h5
-    assert_equal "<h6></h6>", h6
-    assert_equal "<p></p>", p
-    assert_equal "<div></div>", div
-    assert_equal "<span></span>", span
-    assert_equal "<table></table>", table
-    assert_equal "<tr></tr>", tr
-    assert_equal "<td></td>", td
-    assert_equal "<ul></ul>", ul
-    assert_equal "<ol></ol>", ol
-    assert_equal "<li></li>", li
-    assert_equal "<a></a>", a
-    assert_equal "<form></form>", form
-    assert_equal "<input />", input
+
+    single_tag_renderables = [:br, :hr, :img, :base, :input, :col, :frame,
+                              :param, :link, :meta]
+    single_tag_renderables.each { |e| assert_single_tag e }
+
     assert_equal "<input type=\"text\" />", text
     assert_equal "<input type=\"password\" />", password
     assert_equal "<input type=\"radio\" />", radio
     assert_equal "<input type=\"checkbox\" />", checkbox
-    assert_equal "<textarea></textarea>", textarea
     assert_equal "<input type=\"submit\" />", submit
-    assert_equal "<center></center>", center
-    assert_equal "<dd></dd>", dd
-    assert_equal "<dl></dl>", dl
-    assert_equal "<dt></dt>", dt
-    assert_equal "<i></i>", i
-    assert_equal "<b></b>", b
-    assert_equal "<em></em>", em
-    assert_equal "<strong></strong>", strong
-    assert_equal "<pre></pre>", pre
-    assert_equal "<select></select>", select
-    assert_equal "<option></option>", option
-    assert_equal "<article></article>", article
-    assert_equal "<section></section>", section
-    assert_equal "<code></code>", code
-    assert_equal "<abbr></abbr>", abbr
-    assert_equal "<acronym></acronym>", acronym
-    assert_equal "<address></address>", address
-    assert_equal "<bdo></bdo>", bdo
-    assert_equal "<big></big>", big
-    assert_equal "<tt></tt>", tt
-    assert_equal "<small></small>", small
-    assert_equal "<blockquote></blockquote>", blockquote
-    assert_equal "<button></button>", button
-    assert_equal "<caption></caption>", caption
-    assert_equal "<dfn></dfn>", dfn
-    assert_equal "<cite></cite>", cite
-    assert_equal "<code></code>", code
-    assert_equal "<samp></samp>", samp
-    assert_equal "<kbd></kbd>", kbd
-    assert_equal "<var></var>", var
-    assert_equal "<colgroup></colgroup>", colgroup
-    assert_equal "<del></del>", del
-    assert_equal "<ins></ins>", ins
-    assert_equal "<dir></dir>", dir
-    assert_equal "<fieldset></fieldset>", fieldset
-    assert_equal "<legend></legend>", legend
-    assert_equal "<frameset></frameset>", frameset
-    assert_equal "<iframe></iframe>", iframe
-    assert_equal "<noframes></noframes>", noframes
-    assert_equal "<noscript></noscript>", noscript
-    assert_equal "<object></object>", object
-    assert_equal "<optgroup></optgroup>", optgroup
-    assert_equal "<q></q>", q
-    assert_equal "<sub></sub>", sub
-    assert_equal "<sup></sup>", sup
-    assert_equal "<thead></thead>", thead
-    assert_equal "<tfoot></tfoot>", tfoot
-    assert_equal "<tbody></tbody>", tbody
-
-    assert_equal "<br />", br
-    assert_equal "<hr />", hr
-    assert_equal "<img />", img
-    assert_equal "<meta />", meta
-    assert_equal "<base />", base
-    assert_equal "<link />", link
-    assert_equal "<input />", input
-    assert_equal "<col />", col
-    assert_equal "<frame />", frame
-    assert_equal "<param />", param
 
     assert_equal "<!---->", comment
 
@@ -134,21 +75,26 @@ class DeklarativnaTest < Test::Unit::TestCase
                      p { "chau" }
                    ]}
                  ]}
-    assert_equal "<html><head><script type=\"text/javascript\"></script></head><body><p>hola</p><p>chau</p></body></html>", renderable
+    assert_equal "<html><head><script type=\"text/javascript\">" + 
+                 "</script></head><body><p>hola</p><p>chau</p></body></html>",
+                 renderable
   end
 
   def test_style_can_render_css
     renderable = css {
       "h1, p {text-align: left;}"
     }
-    assert_equal "<style type=\"text/css\">h1, p {text-align: left;}</style>", renderable
+    assert_equal "<style type=\"text/css\">h1, p {text-align: left;}</style>",
+                 renderable
   end
 
   def test_script_can_render_javascript
     renderable = javascript {
       "var y = 2; alert(y);"
     }
-    assert_equal "<script type=\"text/javascript\">var y = 2; alert(y);</script>", renderable
+    assert_equal "<script type=\"text/javascript\">var y = 2;" +
+                 " alert(y);</script>",
+                 renderable
   end
 
   def test_comment_block
@@ -175,6 +121,7 @@ class DeklarativnaTest < Test::Unit::TestCase
   end
 
   def test_base_template
-    assert_equal "<html><head></head><body></body></html>", BaseTemplate.new.render
+    assert_equal "<html><head></head><body></body></html>",
+                 BaseTemplate.new.render
   end
 end
